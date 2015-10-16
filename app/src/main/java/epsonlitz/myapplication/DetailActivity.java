@@ -23,7 +23,7 @@ public class DetailActivity extends ActionBarActivity {
         //Bind Widget
         bindwidget();
 
-        //Show view
+        //Show view .....
         showView();
 
     }
