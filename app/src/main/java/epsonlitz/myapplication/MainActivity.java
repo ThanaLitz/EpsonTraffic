@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 
 
             } //event
-        });
+        }); // onClick
 
 
     }
