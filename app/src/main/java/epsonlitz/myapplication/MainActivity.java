@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
     private void createListView() {
 
         //Setup Source og Image
-        int[] iconInts = new int[20];
+        final int[] iconInts = new int[20];
         iconInts[0] = R.drawable.traffic_01;
         iconInts[1] = R.drawable.traffic_02;
         iconInts[2] = R.drawable.traffic_03;
@@ -58,12 +59,26 @@ public class MainActivity extends ActionBarActivity {
         iconInts[18] = R.drawable.traffic_19;
         iconInts[19] = R.drawable.traffic_20;
 
-        String[] title1Strings = getResources().getStringArray(R.array.title1);
+        final String[] title1Strings = getResources().getStringArray(R.array.title1);
         String[] title2Strings = getResources().getStringArray(R.array.title2);
 
         MyAdapter objMyAdapter = new MyAdapter(MainActivity.this, iconInts, title1Strings, title2Strings);
 
         trafficListView.setAdapter(objMyAdapter);
+
+        //Active when Click
+        trafficListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent objIntent = new Intent(MainActivity.this, DetailActivity.class);
+                objIntent.putExtra("Title", title1Strings[i]);
+                objIntent.putExtra("Image", iconInts[i]);
+                objIntent.putExtra("Index", i);
+                startActivity(objIntent);
+
+            }
+        });
 
     }
 
